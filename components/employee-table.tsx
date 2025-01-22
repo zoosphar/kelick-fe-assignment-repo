@@ -20,22 +20,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ChevronDown, ChevronUp, Download, UserPlus } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { Label, RadialBarChart, RadialBar, PolarRadiusAxis } from "recharts";
+import { RadialBarChart, RadialBar, PolarRadiusAxis } from "recharts";
 
 interface Employee {
   id: string;
@@ -74,12 +66,8 @@ export function EmployeeTable({ data }: { data: Employee[] }) {
   const [statusFilter, setStatusFilter] = React.useState("All Status");
   const [roleFilter, setRoleFilter] = React.useState("All Role");
 
-  React.useEffect(() => {
-    console.log("EmployeeTable data:", data);
-  }, [data]);
-
   const sortedData = React.useMemo(() => {
-    let sortableData = [...data];
+    const sortableData = [...data];
     if (sortConfig) {
       sortableData.sort((a, b) => {
         const aValue = a[sortConfig.key] || "";

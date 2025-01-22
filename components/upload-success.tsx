@@ -31,16 +31,19 @@ export function UploadSuccess({
 
         <div className="space-y-2">
           <h3 className="text-lg font-semibold">
-            Congrats! You've successfully added all your employees!
+            Congrats! You&apos;ve successfully added all your employees!
           </h3>
           <p className="text-muted-foreground">
-            Would you like to generate payroll?
+            We&apos;ve successfully processed your Excel file.
+          </p>
+          <p className="text-muted-foreground">
+            Let&apos;s generate the payroll.
           </p>
         </div>
 
         <div className="flex gap-3 justify-center pt-4">
           <Button variant="outline" onClick={onClose}>
-            I'll do it later
+            I&apos;ll do it later
           </Button>
           <Button
             onClick={onGeneratePayroll}

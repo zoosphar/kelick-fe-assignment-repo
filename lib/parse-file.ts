@@ -1,5 +1,13 @@
 import * as XLSX from 'xlsx'
 
+interface Employee {
+  id: string;
+  profile: string;
+  email: string;
+  role: string;
+  status: string;
+}
+
 const formatHeaders = (headers: string[]) => {
   return headers.map((header) => {
     let newHeader = header.toLowerCase()
@@ -27,7 +35,7 @@ const formatHeaders = (headers: string[]) => {
   });
 }
 
-export async function parseFile(file: File): Promise<any[]> {
+export const parseFile = (file: File): Promise<Employee[]> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
     
@@ -41,23 +49,26 @@ export async function parseFile(file: File): Promise<any[]> {
         
         const [headers, ...rows] = jsonData as string[][]
 
-        console.log("headers", headers);
-        console.log("rows", rows);
-
         const formattedHeaders = formatHeaders(headers)
 
-        console.log("formattedHeaders", formattedHeaders);
-
         const formattedData = rows.map((row) => {
-          const obj: Record<string, string> = {}
+          const obj = {
+            id: '',
+            profile: '',
+            email: '',
+            role: '',
+            status: ''
+          } as Employee;
           formattedHeaders.forEach((header, index) => {
-            obj[header.toLowerCase()] = row[index] || ''
-          })
-          return obj
+            if (header in obj) {
+              obj[header as keyof Employee] = row[index] || '';
+            }
+          });
+          return obj;
         })
         
         console.log('Parsed data:', formattedData)
-        resolve(formattedData)
+        resolve(formattedData as Employee[])
       } catch (error) {
         console.error('Error parsing file:', error)
         reject(error)

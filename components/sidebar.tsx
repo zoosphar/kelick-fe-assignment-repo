@@ -14,7 +14,6 @@ import {
   Bell,
   Package,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import kelickLogo from "@/public/kelick_logo.png";

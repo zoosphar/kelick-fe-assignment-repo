@@ -2,13 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import {
-  FileSpreadsheet,
-  Upload,
-  Download,
-  Check,
-  CircleCheck,
-} from "lucide-react";
+import { Upload, Download, CircleCheck } from "lucide-react";
 import {
   Dialog,
   DialogContent,
